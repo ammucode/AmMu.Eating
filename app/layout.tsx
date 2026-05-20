@@ -4,6 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
 import { Providers } from "@/components/providers";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'})
 
@@ -25,6 +26,7 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider><Providers>{children}</Providers></ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
