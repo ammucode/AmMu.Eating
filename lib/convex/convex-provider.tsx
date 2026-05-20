@@ -19,8 +19,10 @@ const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
 export function AppConvexProvider({
   children,
+  token,
 }: {
   children: ReactNode;
+  token?: string;
 }) {
   const router = useRouter();
 
@@ -28,6 +30,7 @@ export function AppConvexProvider({
     <ConvexAuthProvider
       authClient={authClient}
       client={convex}
+      initialToken={token}
       onMutationUnauthorized={() => {
         router.push('/auth');
       }}

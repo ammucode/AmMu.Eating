@@ -1,11 +1,13 @@
 import type { ReactNode } from 'react';
 
 import { AppConvexProvider } from '@/lib/convex/convex-provider';
-import { HydrateClient } from '@/lib/convex/rsc';
+import { HydrateClient, caller } from '@/lib/convex/rsc';
 
-export function Providers({ children }: { children: ReactNode }) {
+export async function Providers({ children }: { children: ReactNode }) {
+  const token = await caller.getToken();
+
   return (
-    <AppConvexProvider>
+    <AppConvexProvider token={token}>
       <HydrateClient>{children}</HydrateClient>
     </AppConvexProvider>
   );
