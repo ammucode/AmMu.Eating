@@ -7,7 +7,12 @@ export default defineAuth(() => ({
   emailAndPassword: {
     enabled: true,
   },
-  baseURL: getEnv().SITE_URL,
+  baseURL: {
+    allowedHosts: [
+      "*.vercel.app",        // Any Vercel preview
+    ],
+    fallback: getEnv().SITE_URL,
+  },
   plugins: [
     convex({
       authConfig,
